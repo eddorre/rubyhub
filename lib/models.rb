@@ -23,6 +23,15 @@ class Subscriber
 end
 
 class SubscriptionRequest
+  def initialize(args)
+    @hub_mode = args['hub.mode']
+    @callback = args['hub.callback']
+    @topic = args['hub.topic']
+    @verify = args['hub.verify']
+    @verify_token = args['hub.verify_token']
+    @lease_seconds = args['hub.lease_seconds']
+  end
+  
   def self.act_on_request(params)
     validation = params_validation(params)
     unless validation == true
